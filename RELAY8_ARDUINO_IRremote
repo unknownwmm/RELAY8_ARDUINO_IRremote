@@ -1,0 +1,123 @@
+//WSDKWILLIAM
+#include <IRremote.h>
+
+//lugar onde é ligado o sinal do infravermelho
+int RECV_PIN = 11;
+
+
+IRrecv irrecv(RECV_PIN);
+const int rele1 = 3;
+const int rele2 = 4;
+const int rele3 = 5;
+const int rele4 = 6;
+const int rele5 = 7;
+const int rele6 = 8;
+const int rele7 = 9;
+const int rele8 = 10;
+
+
+decode_results results;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(rele1,OUTPUT);
+  pinMode(rele2,OUTPUT);
+  pinMode(rele3,OUTPUT);
+  pinMode(rele4,OUTPUT);
+  pinMode(rele5,OUTPUT);
+  pinMode(rele6,OUTPUT);
+  pinMode(rele7,OUTPUT);
+  pinMode(rele8,OUTPUT);
+  irrecv.enableIRIn();
+}
+
+void loop() {
+  if (irrecv.decode(&results)) {
+    Serial.println(results.value, HEX);
+
+
+//PARA O RELE 01
+    if(results.value == 0xFB2AD5){
+      int varStatus = digitalRead(rele1);
+      if(varStatus == HIGH){
+        digitalWrite(rele1, LOW);
+      } 
+      else {
+        digitalWrite(rele1, HIGH);
+      } 
+    }
+//PARA O RELE 02
+    if(results.value == 0xFB6897){
+      int varStatus = digitalRead(rele2);
+      if(varStatus == HIGH){
+        digitalWrite(rele2, LOW);
+      } 
+      else {
+        digitalWrite(rele2, HIGH);
+      } 
+    }
+
+//PARA O RELE 03
+    if(results.value == 0xFBA857){
+      int varStatus = digitalRead(rele3);
+      if(varStatus == HIGH){
+        digitalWrite(rele3, LOW);
+      } 
+      else {
+        digitalWrite(rele3, HIGH);
+      } 
+    }
+//PARA O RELE 04
+    if(results.value == 0xFB0AF5){
+      int varStatus = digitalRead(rele4);
+      if(varStatus == HIGH){
+        digitalWrite(rele4, LOW);
+      } 
+      else {
+        digitalWrite(rele4, HIGH);
+      } 
+    }
+//PARA O RELE 05
+    if(results.value == 0xFB48B7){
+      int varStatus = digitalRead(rele5);
+      if(varStatus == HIGH){
+        digitalWrite(rele5, LOW);
+      } 
+      else {
+        digitalWrite(rele5, HIGH);
+      } 
+    }
+//PARA O RELE 06
+    if(results.value == 0xFB8877){
+      int varStatus = digitalRead(rele6);
+      if(varStatus == HIGH){
+        digitalWrite(rele6, LOW);
+      } 
+      else {
+        digitalWrite(rele6, HIGH);
+      } 
+    }
+//PARA O RELE 07
+    if(results.value == 0xFB32CD){
+      int varStatus = digitalRead(rele7);
+      if(varStatus == HIGH){
+        digitalWrite(rele7, LOW);
+      } 
+      else {
+        digitalWrite(rele7, HIGH);
+      } 
+    }
+//PARA O RELE 08
+    if(results.value == 0xFB708F){
+      int varStatus = digitalRead(rele8);
+      if(varStatus == HIGH){
+        digitalWrite(rele8, LOW);
+      } 
+      else {
+        digitalWrite(rele8, HIGH);
+      } 
+    }
+    irrecv.resume(); 
+  }
+}
